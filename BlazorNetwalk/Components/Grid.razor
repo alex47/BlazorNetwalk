@@ -1,0 +1,67 @@
+﻿@using BlazorNetwalk.Elements
+@using BlazorNetwalk.GameLogic
+
+@if (game is not null && game.Elements is not null)
+{
+    @if (isGameSolved)
+    {
+        <h3>YOU WON!</h3>
+    }
+
+    @for (int i = 0; i < game.RowCount; i++)
+    {
+        <div class="d-flex flex-row">
+            @for (int j = 0; j < game.ColumnCount; j++)
+            {
+                <div class="">
+                    <GridElement Size="50" Element="game.Elements[i, j]" OnClickCallback="ElementRotatedCallback" />
+                </div>
+            }
+        </div>
+    }
+
+    <div class="mt-3 mb-3">
+        <button @onclick="SolveButtonClicked" type="button" class="btn btn-primary me-2">Solve</button>
+        <button @onclick="RestartButtonClicked" type="button" class="btn btn-primary me-2">Restart</button>
+        <button @onclick="NewGameButtonClicked" type="button" class="btn btn-primary">New Game</button>
+    </div>
+}
+
+@code {
+    private int rowCount = 20;
+    private int columnCount = 20;
+    private bool isWrapping = true;
+
+    private Game? game;
+    private bool isGameSolved = false;
+
+    protected override void OnInitialized()
+    {
+        game = new Game();
+        NewGameButtonClicked();
+    }
+
+    private void SolveButtonClicked()
+    {
+        game?.TrySolveGame();
+        game?.UpdateServerConnectionStates();
+    }
+
+    private void RestartButtonClicked()
+    {
+        isGameSolved = false;
+        game?.RestartGame();
+    }
+
+    private void NewGameButtonClicked()
+    {
+        isGameSolved = false;
+        game?.NewGame(rowCount, columnCount, isWrapping);
+    }
+
+    private void ElementRotatedCallback()
+    {
+        game?.UpdateServerConnectionStates();
+        isGameSolved = game?.IsGameSolved() ?? false;
+    }
+}

@@ -1,0 +1,67 @@
+﻿@using BlazorNetwalk.Elements
+@using System.Timers
+
+@if (Element is not null)
+{
+    <div @onpointerdown="PointerDown" @onpointerup="PointerUp"
+        class="border d-flex align-items-center @(Element.IsFixed ? "bg-secondary" : "")"
+        style="width:@(int.Parse(Size) + gap)px; height:@(int.Parse(Size) + gap)px; transform: rotate(@(Element.Position * 90 * -1)deg);">
+        <img class="mx-auto" src="@(Element.IsConnectedToServer ? Element.IconConnectedToServer : Element.IconNormal)" width="@Size" height="@Size" />
+    </div>
+}
+
+@code {
+    [Parameter]
+    public string Size { get; set; } = "0";
+
+    [Parameter]
+    public AbstractElement? Element { get; set; }
+
+    [Parameter]
+    public EventCallback OnClickCallback { get; set; }
+
+    private int gap = 6;
+    private bool hasBeenUnfixed = false;
+    private System.Timers.Timer timer;
+
+    protected override void OnInitialized()
+    {
+        timer = new(500);
+        timer.Elapsed += OnTimedEvent;
+    }
+
+    private void PointerDown()
+    {
+        timer.Start();
+    }
+
+    private void PointerUp()
+    {
+        timer.Stop();
+
+        if (hasBeenUnfixed == false)
+        {
+            Element?.Rotate();
+        }
+
+        hasBeenUnfixed = false;
+
+        OnClickCallback.InvokeAsync();
+    }
+
+    private void OnTimedEvent(object source, ElapsedEventArgs e)
+    {
+        if (Element is not null)
+        {
+            Element.IsFixed = Element.IsFixed == false;
+
+            if (Element.IsFixed == false)
+            {
+                hasBeenUnfixed = true;
+            }
+        }
+
+        timer.Stop();
+        StateHasChanged();
+    }
+}
