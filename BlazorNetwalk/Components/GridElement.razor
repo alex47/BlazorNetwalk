@@ -3,7 +3,7 @@
 
 @if (Element is not null)
 {
-    <div @onpointerdown="PointerDown" @onpointerup="PointerUp"
+    <div @onpointerdown="PointerDown" @onpointerup="PointerUp" @oncontextmenu:preventDefault="true" @oncontextmenu="DoNothing"
         class="border d-flex align-items-center @(Element.IsFixed ? "bg-secondary" : "")"
         style="width:@(int.Parse(Size) + gap)px; height:@(int.Parse(Size) + gap)px; transform: rotate(@(Element.Position * 90 * -1)deg);">
         <img class="mx-auto" src="@(Element.IsConnectedToServer ? Element.IconConnectedToServer : Element.IconNormal)" width="@Size" height="@Size" />
@@ -28,6 +28,11 @@
     {
         timer = new(500);
         timer.Elapsed += OnTimedEvent;
+    }
+
+    private void DoNothing()
+    { 
+
     }
 
     private void PointerDown()
