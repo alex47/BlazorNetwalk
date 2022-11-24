@@ -33,19 +33,19 @@
       "url": "_framework\/icudt.dat"
     },
     {
-      "hash": "sha256-bAuTPJWosDJlZSm02gEKQwwDvk2GpfuJosbwoeXiWa8=",
+      "hash": "sha256-SeI12irzgjqO7c7RdfJnYHczJtJdn4Tc\/PXOuLwrh4U=",
       "url": "_framework\/blazor.boot.json"
     },
     {
-      "hash": "sha256-m7aamV4AehFirSVdrex2DP7d\/aAy2oh9Jo+kvAhArjM=",
+      "hash": "sha256-zRaUJdh1TwEr3O+WOwFkQd2vLxq6OvuNb4cX4qj248Y=",
       "url": "_framework\/BlazorNetwalk.dll"
     },
     {
-      "hash": "sha256-GThAGNvw7G8CFefK2HO97SsLt\/XCNL6aNSSC7Wrszdk=",
+      "hash": "sha256-sTd0x1tH66SkasZBHU2vEKCNIAnLVOUUdm0a4hoBodo=",
       "url": "_framework\/Microsoft.AspNetCore.Components.dll"
     },
     {
-      "hash": "sha256-dOP34v0t0ODb8sn3Ge+7TD9rrQmXScqlN7RO1ul7i7U=",
+      "hash": "sha256-CRl39F9NednZGutiXYkgsob\/P\/Wtv0Ywn1FGBbN+2mc=",
       "url": "_framework\/Microsoft.AspNetCore.Components.Web.dll"
     },
     {
@@ -141,7 +141,7 @@
       "url": "_framework\/System.ObjectModel.dll"
     },
     {
-      "hash": "sha256-3BHKlt\/SDtblNzc8YPCaBSoxoLel7\/KSV3QEfG52dqI=",
+      "hash": "sha256-TaON8Z5xmGaibtyUWElKcVvssI+iDIddtElnOhBSFxQ=",
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
@@ -149,7 +149,7 @@
       "url": "_framework\/System.Private.Runtime.InteropServices.JavaScript.dll"
     },
     {
-      "hash": "sha256-INekZmgsx9eYovbIifzHQPzG5Z1ipW7wFZ27bt8bGP8=",
+      "hash": "sha256-I+5ivUKaHXgdNQzLJyiyxjQUVjfGbojHSRcnBRoN\/hE=",
       "url": "_framework\/System.Private.Uri.dll"
     },
     {
@@ -157,7 +157,7 @@
       "url": "_framework\/System.Runtime.CompilerServices.Unsafe.dll"
     },
     {
-      "hash": "sha256-tzrY7CPrHXMOICT0d6hxmpNgKu77mWce95h9QR6E+vY=",
+      "hash": "sha256-SJUEM7+saVZQAiutReKTUvCbuFI4CAbXSWl+lYpz3O8=",
       "url": "_framework\/System.Runtime.dll"
     },
     {
@@ -169,7 +169,7 @@
       "url": "_framework\/System.Text.Json.dll"
     },
     {
-      "hash": "sha256-MYAcZc0eHVP1vNlHsgW+2KLQHA+1pIxlaDDZIZvzlyI=",
+      "hash": "sha256-k3TQfFoaZTi8RPukct+b2eWrbH75ZFwy3Jb3DyCBsVU=",
       "url": "BlazorNetwalk.styles.css"
     },
     {
@@ -289,5 +289,5 @@
       "url": "manifest.json"
     }
   ],
-  "version": "AX6aHGJu"
+  "version": "a2x0ygS\/"
 };
