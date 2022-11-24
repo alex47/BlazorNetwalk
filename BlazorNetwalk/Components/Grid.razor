@@ -1,5 +1,10 @@
-﻿@using BlazorNetwalk.Elements
+﻿@inject IJSRuntime JsRuntime
+
+@using BlazorNetwalk.Elements
 @using BlazorNetwalk.GameLogic
+
+<div>@windowWidth</div>
+<div>@windowHeight</div>
 
 @if (game is not null && game.Elements is not null)
 {
@@ -35,8 +40,15 @@
     private Game? game;
     private bool isGameSolved = false;
 
-    protected override void OnInitialized()
+    int windowWidth = 0;
+    int windowHeight = 0;
+
+    protected override async Task OnInitializedAsync()
     {
+        var dimension = await JsRuntime.InvokeAsync<WindowDimension>("getWindowDimensions");
+        windowWidth = dimension.Width;
+        windowHeight = dimension.Height;
+
         game = new Game();
         NewGameButtonClicked();
     }
@@ -63,5 +75,11 @@
     {
         game?.UpdateServerConnectionStates();
         isGameSolved = game?.IsGameSolved() ?? false;
+    }
+
+    public class WindowDimension
+    {
+        public int Width { get; set; }
+        public int Height { get; set; }
     }
 }
