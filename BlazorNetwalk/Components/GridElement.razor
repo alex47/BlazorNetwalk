@@ -3,7 +3,7 @@
 
 @if (Element is not null)
 {
-    <div @onpointerdown="PointerDown" @onpointerup="PointerUp" @oncontextmenu:preventDefault="true" @oncontextmenu="DoNothing"
+    <div @onpointerdown="PointerDown" @onpointerup="PointerUp" @onpointerleave="PointerLeave" @oncontextmenu:preventDefault="true" @oncontextmenu="DoNothing"
         class="border d-flex align-items-center @(Element.IsFixed ? "bg-secondary" : "")"
      style="width:@(Size + (Margin / 2))px; height:@(Size + (Margin / 2))px; transform: rotate(@(Element.Position * 90 * -1)deg);">
         <img class="mx-auto" src="@(Element.IsConnectedToServer ? Element.IconConnectedToServer : Element.IconNormal)" width="@Size" height="@Size" />
@@ -44,6 +44,11 @@
 
     private void PointerUp()
     {
+        if (timer.Enabled == false)
+        {
+            return;
+        }
+
         timer.Stop();
 
         if (hasBeenUnfixed == false)
@@ -54,6 +59,12 @@
         hasBeenUnfixed = false;
 
         OnClickCallback.InvokeAsync();
+    }
+
+    private void PointerLeave()
+    {
+        Size = 100;
+        timer.Stop();
     }
 
     private void OnTimedEvent(object source, ElapsedEventArgs e)
