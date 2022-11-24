@@ -5,14 +5,17 @@
 {
     <div @onpointerdown="PointerDown" @onpointerup="PointerUp" @oncontextmenu:preventDefault="true" @oncontextmenu="DoNothing"
         class="border d-flex align-items-center @(Element.IsFixed ? "bg-secondary" : "")"
-        style="width:@(int.Parse(Size) + gap)px; height:@(int.Parse(Size) + gap)px; transform: rotate(@(Element.Position * 90 * -1)deg);">
+     style="width:@(Size + (Margin / 2))px; height:@(Size + (Margin / 2))px; transform: rotate(@(Element.Position * 90 * -1)deg);">
         <img class="mx-auto" src="@(Element.IsConnectedToServer ? Element.IconConnectedToServer : Element.IconNormal)" width="@Size" height="@Size" />
     </div>
 }
 
 @code {
     [Parameter]
-    public string Size { get; set; } = "0";
+    public int Size { get; set; } = 0;
+
+    [Parameter]
+    public int Margin { get; set; } = 0;
 
     [Parameter]
     public AbstractElement? Element { get; set; }
@@ -20,7 +23,6 @@
     [Parameter]
     public EventCallback OnClickCallback { get; set; }
 
-    private int gap = 6;
     private bool hasBeenUnfixed = false;
     private System.Timers.Timer timer;
 

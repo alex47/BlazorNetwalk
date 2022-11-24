@@ -3,9 +3,6 @@
 @using BlazorNetwalk.Elements
 @using BlazorNetwalk.GameLogic
 
-<div>@windowWidth</div>
-<div>@windowHeight</div>
-
 @if (game is not null && game.Elements is not null)
 {
     @if (isGameSolved)
@@ -19,38 +16,33 @@
             @for (int j = 0; j < game.ColumnCount; j++)
             {
                 <div class="">
-                    <GridElement Size="50" Element="game.Elements[i, j]" OnClickCallback="ElementRotatedCallback" />
+                    <GridElement Size="@ElementSize" Margin="@ElementMargin" Element="game.Elements[i, j]" OnClickCallback="ElementRotatedCallback" />
                 </div>
             }
         </div>
     }
 
-    <div class="mt-3 mb-3">
+    <div class="mt-3">
         <button @onclick="SolveButtonClicked" type="button" class="btn btn-primary me-2">Solve</button>
         <button @onclick="RestartButtonClicked" type="button" class="btn btn-primary me-2">Restart</button>
-        <button @onclick="NewGameButtonClicked" type="button" class="btn btn-primary">New Game</button>
+        <button @onclick="NewGameButtonClickedAsync" type="button" class="btn btn-primary">New Game</button>
     </div>
 }
 
 @code {
-    private int rowCount = 20;
-    private int columnCount = 20;
+    private int rowCount = 10;
+    private int columnCount = 10;
     private bool isWrapping = true;
+    private const int ElementSize = 50;
+    private const int ElementMargin = 6;
 
     private Game? game;
     private bool isGameSolved = false;
 
-    int windowWidth = 0;
-    int windowHeight = 0;
-
     protected override async Task OnInitializedAsync()
     {
-        var dimension = await JsRuntime.InvokeAsync<WindowDimension>("getWindowDimensions");
-        windowWidth = dimension.Width;
-        windowHeight = dimension.Height;
-
         game = new Game();
-        NewGameButtonClicked();
+        await NewGameButtonClickedAsync();
     }
 
     private void SolveButtonClicked()
@@ -65,8 +57,13 @@
         game?.RestartGame();
     }
 
-    private void NewGameButtonClicked()
+    private async Task NewGameButtonClickedAsync()
     {
+        var windowDimensions = await JsRuntime.InvokeAsync<WindowDimension>("getWindowDimensions");
+
+        rowCount = (int)Math.Ceiling((float)windowDimensions.Height / (ElementSize + ElementMargin)) - 1;
+        columnCount = (int)Math.Ceiling((float)windowDimensions.Width / (ElementSize + ElementMargin));
+
         isGameSolved = false;
         game?.NewGame(rowCount, columnCount, isWrapping);
     }
