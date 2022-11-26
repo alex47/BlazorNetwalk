@@ -33,11 +33,11 @@
       "url": "_framework\/icudt.dat"
     },
     {
-      "hash": "sha256-31IJJKHimKX21vk4QTdOHrlKzjjEDKuZUfO4ZRn8ugw=",
+      "hash": "sha256-aaGeM1PiemSEoMqYhBeaIZUyFqHM5hWYXrg0tQqOmhw=",
       "url": "_framework\/blazor.boot.json"
     },
     {
-      "hash": "sha256-2gNPIPlz2r3Aq0ak\/Y7ofQBZ5XPadl7CHM4XY5dWLkA=",
+      "hash": "sha256-hJMEzi0Rz9kGjrfW\/PaCu64C2YMX+JYJju3EM21bTOU=",
       "url": "_framework\/BlazorNetwalk.dll"
     },
     {
@@ -45,7 +45,7 @@
       "url": "_framework\/Microsoft.AspNetCore.Components.dll"
     },
     {
-      "hash": "sha256-iG4qP3nL9YGcXXO2k3YzaylFzoho757IRVqf29y8vbI=",
+      "hash": "sha256-CiRpoD6JmAuyXpCS4OXlNinpZHoqxW3Z08Dapod8yVU=",
       "url": "_framework\/Microsoft.AspNetCore.Components.Web.dll"
     },
     {
@@ -141,7 +141,7 @@
       "url": "_framework\/System.ObjectModel.dll"
     },
     {
-      "hash": "sha256-cz9\/IWY9nTd\/v5fc01boqvgBiSQmkoYbhVGQfETil74=",
+      "hash": "sha256-GAoqW+7XZ4ANpJGIvGzXi+bPDypY6lBcDevAQ6dNqPI=",
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
@@ -149,7 +149,7 @@
       "url": "_framework\/System.Private.Uri.dll"
     },
     {
-      "hash": "sha256-f\/LwZ4Y48QNg0VMloAG8z+l8DGAo261nzn04vPB3TfE=",
+      "hash": "sha256-ZOT\/D5+fcOT0+\/Etul4ubHfjFvf1IPVBGg8wqfU\/E80=",
       "url": "_framework\/System.Runtime.dll"
     },
     {
@@ -285,5 +285,5 @@
       "url": "manifest.json"
     }
   ],
-  "version": "0LkubMii"
+  "version": "w4rKlQQS"
 };
