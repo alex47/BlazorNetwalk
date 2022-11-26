@@ -29,13 +29,12 @@ public class GameGenerator
         return elements;
     }
 
-    private static AbstractElement[,] GenerateGame(int rowCount, int columnCount, bool isWrapping)
+    private static AbstractElement[,] GenerateGame(int rowCount, int columnCount, bool isWrapping, int? seed = null)
     {
         AbstractElement[,] elements = new AbstractElement[rowCount, columnCount];
         var elementsWithPossibleChoices = new List<AbstractElement>();
 
-        const int seed = 1;
-        var random = new Random();
+        var random = seed.HasValue ? new Random(seed.Value) : new Random();
         
         int randomServerElementType = random.Next(4);
 
