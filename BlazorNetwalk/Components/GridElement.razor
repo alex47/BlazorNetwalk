@@ -3,7 +3,7 @@
 
 @if (Element is not null)
 {
-    <div @onpointerdown="PointerDown" @onpointerup="PointerUp" @onpointerleave="PointerLeave" @oncontextmenu:preventDefault="true" @oncontextmenu="DoNothing"
+    <div @onpointerdown="PointerDown" @onpointerup="PointerUp" @ondrag="Drag" @oncontextmenu:preventDefault="true" @oncontextmenu="DoNothing"
         class="border d-flex align-items-center @(Element.IsFixed ? "bg-secondary" : "")"
      style="width:@(Size + (Margin / 2))px; height:@(Size + (Margin / 2))px; transform: rotate(@(Element.Position * 90 * -1)deg);">
         <img class="mx-auto" src="@(Element.IsConnectedToServer ? Element.IconConnectedToServer : Element.IconNormal)" width="@Size" height="@Size" />
@@ -24,7 +24,7 @@
     public EventCallback OnClickCallback { get; set; }
 
     private bool hasBeenUnfixed = false;
-    private System.Timers.Timer timer;
+    private System.Timers.Timer timer = new();
 
     protected override void OnInitialized()
     {
@@ -44,11 +44,6 @@
 
     private void PointerUp()
     {
-        if (timer.Enabled == false)
-        {
-            return;
-        }
-
         timer.Stop();
 
         if (hasBeenUnfixed == false)
@@ -57,29 +52,30 @@
         }
 
         hasBeenUnfixed = false;
-
         OnClickCallback.InvokeAsync();
     }
 
-    private void PointerLeave()
+    private void Drag()
     {
-        Size = 100;
         timer.Stop();
     }
 
-    private void OnTimedEvent(object source, ElapsedEventArgs e)
+    private void OnTimedEvent(object? source, ElapsedEventArgs e)
     {
-        if (Element is not null)
-        {
-            Element.IsFixed = Element.IsFixed == false;
+        timer.Stop();
 
-            if (Element.IsFixed == false)
-            {
-                hasBeenUnfixed = true;
-            }
+        if (Element is null)
+        {
+            return;
         }
 
-        timer.Stop();
+        Element.IsFixed = !Element.IsFixed;
+
+        if (Element.IsFixed == false)
+        {
+            hasBeenUnfixed = true;
+        }
+
         StateHasChanged();
     }
 }
