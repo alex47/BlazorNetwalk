@@ -8,10 +8,10 @@
         @ondrag="Drag"
         @oncontextmenu:preventDefault="true"
         @oncontextmenu="DoNothing"
-        @ontouchmove:preventDefault
-        @ontouchcancel:preventDefault
-        @ontouchmove:stopPropagation
-        @ontouchcancel:stopPropagation
+        @ontouchmove:preventDefault="true"
+        @ontouchcancel:preventDefault="true"
+        @ontouchmove:stopPropagation="true"
+        @ontouchcancel:stopPropagation="true"
         class="border d-flex align-items-center @(Element.IsFixed ? "bg-secondary" : "")"
         style="width:@(Size + (Margin / 2))px; height:@(Size + (Margin / 2))px; transform: rotate(@(Element.Position * 90 * -1)deg);">
             <img class="mx-auto" src="@(Element.IsConnectedToServer ? Element.IconConnectedToServer : Element.IconNormal)" width="@Size" height="@Size" />
