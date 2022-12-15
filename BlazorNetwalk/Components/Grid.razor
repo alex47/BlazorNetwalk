@@ -37,7 +37,7 @@
     private int rowCount = 10;
     private int columnCount = 10;
     private bool isWrapping = true;
-    private const int ElementSize = 40;
+    private const int ElementSize = 30;
     private const int ElementMargin = 6;
 
     private Game? game;
@@ -60,8 +60,8 @@
     {
         var windowDimensions = await JsRuntime.InvokeAsync<WindowDimension>("getWindowDimensions");
 
-        rowCount = (int)Math.Ceiling((float)windowDimensions.Height / (ElementSize + ElementMargin)) - 1;
-        columnCount = (int)Math.Ceiling((float)windowDimensions.Width / (ElementSize + ElementMargin));
+        rowCount = (int)Math.Floor((float)windowDimensions.Height / (ElementSize + ElementMargin / 2)) - 1;
+        columnCount = (int)Math.Floor((float)windowDimensions.Width / (ElementSize + ElementMargin / 2));
 
         isGameSolved = false;
         game?.NewGame(rowCount, columnCount, isWrapping);
