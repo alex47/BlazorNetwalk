@@ -1,4 +1,6 @@
-﻿namespace BlazorNetwalk.Elements.BaseElements;
+﻿using BlazorNetwalk.Elements.ComputerElements;
+
+namespace BlazorNetwalk.Elements.BaseElements;
 
 public class BaseCornerElement : AbstractElement
 {
@@ -43,6 +45,7 @@ public class BaseCornerElement : AbstractElement
         }
 
         TryFixing_Bridge();
+        TryFixing_OneNeighbourFixedIsComputer_OtherCanNotBeComputer();
         TryFixing_OneNeighbourFixed();
         TryFixing_TwoNeighboursFixed();
 
@@ -77,6 +80,62 @@ public class BaseCornerElement : AbstractElement
             else if (MustConnectToRight())
             {
                 SetFixedPosition(0);
+            }
+        }
+    }
+
+    private void TryFixing_OneNeighbourFixedIsComputer_OtherCanNotBeComputer()
+    {
+        if (IsFixed)
+        {
+            return;
+        }
+
+        else if (MustConnectToLeft() && LeftElement is ComputerSingleElement)
+        {
+            if (TopElement is ComputerSingleElement)
+            {
+                SetFixedPosition(3);
+            }
+            else if (BottomElement is ComputerSingleElement)
+            {
+                SetFixedPosition(2);
+            }
+        }
+
+        else if (MustConnectToRight() && RightElement is ComputerSingleElement)
+        {
+            if (TopElement is ComputerSingleElement)
+            {
+                SetFixedPosition(0);
+            }
+            else if (BottomElement is ComputerSingleElement)
+            {
+                SetFixedPosition(1);
+            }
+        }
+
+        else if (MustConnectToTop() && TopElement is ComputerSingleElement)
+        {
+            if (LeftElement is ComputerSingleElement)
+            {
+                SetFixedPosition(1);
+            }
+            else if (RightElement is ComputerSingleElement)
+            {
+                SetFixedPosition(2);
+            }
+        }
+
+        else if (MustConnectToBottom() && BottomElement is ComputerSingleElement)
+        {
+            if (LeftElement is ComputerSingleElement)
+            {
+                SetFixedPosition(0);
+            }
+            else if (RightElement is ComputerSingleElement)
+            {
+                SetFixedPosition(3);
             }
         }
     }
