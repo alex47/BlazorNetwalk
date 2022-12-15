@@ -29,7 +29,6 @@
 
     <div class="ms-3 mt-3">
         <button @onclick="SolveButtonClicked" type="button" class="btn btn-primary me-2">Solve</button>
-        <button @onclick="RestartButtonClicked" type="button" class="btn btn-primary me-2">Restart</button>
         <button @onclick="NewGameButtonClickedAsync" type="button" class="btn btn-primary">New Game</button>
     </div>
 }
@@ -57,18 +56,12 @@
         isGameSolved = game?.IsGameSolved() ?? false;
     }
 
-    private void RestartButtonClicked()
-    {
-        isGameSolved = false;
-        game?.RestartGame();
-    }
-
     private async Task NewGameButtonClickedAsync()
     {
         var windowDimensions = await JsRuntime.InvokeAsync<WindowDimension>("getWindowDimensions");
 
-        rowCount = (int)Math.Floor((float)windowDimensions.Height / (ElementSize + ElementMargin)) - 1;
-        columnCount = (int)Math.Floor((float)windowDimensions.Width / (ElementSize + ElementMargin));
+        rowCount = (int)Math.Ceiling((float)windowDimensions.Height / (ElementSize + ElementMargin)) - 1;
+        columnCount = (int)Math.Ceiling((float)windowDimensions.Width / (ElementSize + ElementMargin));
 
         isGameSolved = false;
         game?.NewGame(rowCount, columnCount, isWrapping);
