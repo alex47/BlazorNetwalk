@@ -54,6 +54,7 @@
     {
         game?.TrySolveGame();
         game?.UpdateServerConnectionStates();
+        isGameSolved = game?.IsGameSolved() ?? false;
     }
 
     private void RestartButtonClicked()
