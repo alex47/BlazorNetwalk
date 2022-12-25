@@ -30,14 +30,16 @@
     <div class="ms-3 mt-3">
         <button @onclick="SolveButtonClicked" type="button" class="btn btn-primary me-2">Solve</button>
         <button @onclick="NewGameButtonClickedAsync" type="button" class="btn btn-primary">New Game</button>
+        <button @onclick="DecreaseElementSizeAsync" type="button" class="btn btn-primary">-</button>
+        <button @onclick="IncreaseElementSizeAsync" type="button" class="btn btn-primary">+</button>
     </div>
 }
 
 @code {
-    private int rowCount = 10;
-    private int columnCount = 10;
+    private int rowCount = 0;
+    private int columnCount = 0;
     private bool isWrapping = true;
-    private const int ElementSize = 30;
+    private int ElementSize = 20;
     private const int ElementMargin = 6;
 
     private Game? game;
@@ -60,11 +62,23 @@
     {
         var windowDimensions = await JsRuntime.InvokeAsync<WindowDimension>("getWindowDimensions");
 
-        rowCount = (int)Math.Floor((float)windowDimensions.Height / (ElementSize + ElementMargin / 2)) - 1;
+        rowCount = (int)Math.Floor((float)windowDimensions.Height / (ElementSize + ElementMargin / 2)) - 2;
         columnCount = (int)Math.Floor((float)windowDimensions.Width / (ElementSize + ElementMargin / 2));
 
         isGameSolved = false;
         game?.NewGame(rowCount, columnCount, isWrapping);
+    }
+
+    private async Task IncreaseElementSizeAsync()
+    {
+        ElementSize += 5;
+        await NewGameButtonClickedAsync();
+    }
+
+    private async Task DecreaseElementSizeAsync()
+    {
+        ElementSize -= 5;
+        await NewGameButtonClickedAsync();
     }
 
     private void ElementRotatedCallback()
