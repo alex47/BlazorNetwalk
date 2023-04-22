@@ -58,10 +58,10 @@ public abstract class AbstractElement
     public bool IsConnectedWithTopElement() => HasConnectionToTop() && TopElement?.HasConnectionToBottom() == true;
     public bool IsConnectedWithBottomElement() => HasConnectionToBottom() && BottomElement?.HasConnectionToTop() == true;
 
-    public bool MustConnectToLeft() => LeftElement?.IsFixed == true && LeftElement.HasConnectionToRight();
-    public bool MustConnectToRight() => RightElement?.IsFixed == true && RightElement.HasConnectionToLeft();
-    public bool MustConnectToTop() => TopElement?.IsFixed == true && TopElement.HasConnectionToBottom();
-    public bool MustConnectToBottom() => BottomElement?.IsFixed == true && BottomElement.HasConnectionToTop();
+    public bool MustConnectToLeft() => LeftElement is not null && LeftElement.IsFixed == true && LeftElement.HasConnectionToRight();
+    public bool MustConnectToRight() => RightElement is not null && RightElement.IsFixed == true && RightElement.HasConnectionToLeft();
+    public bool MustConnectToTop() => TopElement is not null && TopElement.IsFixed == true && TopElement.HasConnectionToBottom();
+    public bool MustConnectToBottom() => BottomElement is not null && BottomElement.IsFixed == true && BottomElement.HasConnectionToTop();
 
     public virtual bool CanNotConnectToLeft() => LeftElement is null || (LeftElement.IsFixed && LeftElement.HasConnectionToRight() == false);
     public virtual bool CanNotConnectToRight() => RightElement is null || (RightElement.IsFixed && RightElement.HasConnectionToLeft() == false);
