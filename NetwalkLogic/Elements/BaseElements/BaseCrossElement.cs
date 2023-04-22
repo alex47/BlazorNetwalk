@@ -1,4 +1,4 @@
-﻿namespace BlazorNetwalk.Elements.BaseElements;
+﻿namespace NetwalkLogic.Elements.BaseElements;
 
 public class BaseCrossElement : AbstractElement
 {

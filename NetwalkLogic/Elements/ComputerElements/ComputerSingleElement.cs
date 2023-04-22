@@ -1,6 +1,6 @@
-﻿using BlazorNetwalk.Elements.BaseElements;
+﻿using NetwalkLogic.Elements.BaseElements;
 
-namespace BlazorNetwalk.Elements.ComputerElements;
+namespace NetwalkLogic.Elements.ComputerElements;
 
 public class ComputerSingleElement : BaseSingleElement
 {

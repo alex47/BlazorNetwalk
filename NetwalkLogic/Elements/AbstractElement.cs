@@ -1,4 +1,4 @@
-﻿namespace BlazorNetwalk.Elements;
+﻿namespace NetwalkLogic.Elements;
 
 public abstract class AbstractElement
 {

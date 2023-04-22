@@ -1,6 +1,6 @@
-﻿using BlazorNetwalk.Elements.ComputerElements;
+﻿using NetwalkLogic.Elements.ComputerElements;
 
-namespace BlazorNetwalk.Elements.BaseElements;
+namespace NetwalkLogic.Elements.BaseElements;
 
 public class BaseLineElement : AbstractElement
 {

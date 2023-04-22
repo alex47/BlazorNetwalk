@@ -1,18 +1,14 @@
-﻿using BlazorNetwalk.Elements;
-using BlazorNetwalk.Elements.BaseElements;
-using BlazorNetwalk.Elements.ComputerElements;
-using BlazorNetwalk.Elements.PipeElements;
-using BlazorNetwalk.Elements.ServerElements;
-using System.Xml.Linq;
-using static BlazorNetwalk.Elements.AbstractElement;
+﻿using NetwalkLogic.Elements;
+using NetwalkLogic.Elements.ServerElements;
+using static NetwalkLogic.Elements.AbstractElement;
 
-namespace BlazorNetwalk.GameLogic;
+namespace NetwalkLogic;
 
 public class GameGenerator
 {
-    public static AbstractElement[,] CreateNewGame(int rowCount, int columnCount, bool isWrapping)
+    public static AbstractElement[,] CreateNewGame(int rowCount, int columnCount, bool isWrapping, int? seed = null)
     {
-        var elements = GenerateGame(rowCount, columnCount, isWrapping);
+        var elements = GenerateGame(rowCount, columnCount, isWrapping, seed);
         
         if (isWrapping)
         {
@@ -29,9 +25,22 @@ public class GameGenerator
         return elements;
     }
 
-    private static AbstractElement[,] GenerateGame(int rowCount, int columnCount, bool isWrapping, int? seed = null)
+    private static AbstractElement[,] GenerateGame(int rowCount, int columnCount, bool isWrapping, int? seed)
     {
         AbstractElement[,] elements = new AbstractElement[rowCount, columnCount];
+        /*
+        for (int i = 0; i < rowCount; i++)
+        {
+            for (int j = 0; j < columnCount; j++)
+            {
+                elements[i, j] = new DefaultElement();
+            }
+        }
+        */
+
+
+
+
         var elementsWithPossibleChoices = new List<AbstractElement>();
 
         var random = seed.HasValue ? new Random(seed.Value) : new Random();
@@ -89,7 +98,7 @@ public class GameGenerator
             var element = elementsWithPossibleChoices[randomElementIndex];
 
             // 2. Remove us from the elementsWithPossibleChoices list if we don't have a possible direction
-            // If it has at least 3 connected directions
+            // If it has at least 3 connected directions (there is no element that can connect to 4 directions)
             if (3 <= element.GetConnectionDirections().Count)
             {
                 elementsWithPossibleChoices.Remove(element);

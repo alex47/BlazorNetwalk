@@ -1,10 +1,9 @@
-﻿using BlazorNetwalk.Elements;
-using BlazorNetwalk.Elements.BaseElements;
-using BlazorNetwalk.Elements.ComputerElements;
-using BlazorNetwalk.Elements.PipeElements;
-using static BlazorNetwalk.Elements.AbstractElement;
+﻿using NetwalkLogic.Elements;
+using NetwalkLogic.Elements.ComputerElements;
+using NetwalkLogic.Elements.PipeElements;
+using static NetwalkLogic.Elements.AbstractElement;
 
-namespace BlazorNetwalk.GameLogic;
+namespace NetwalkLogic;
 
 public class ElementGenerator
 {

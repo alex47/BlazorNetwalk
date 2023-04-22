@@ -1,7 +1,7 @@
-﻿using BlazorNetwalk.Elements;
-using BlazorNetwalk.Elements.ServerElements;
+﻿using NetwalkLogic.Elements;
+using NetwalkLogic.Elements.ServerElements;
 
-namespace BlazorNetwalk.GameLogic;
+namespace NetwalkLogic;
 
 public class Game
 {

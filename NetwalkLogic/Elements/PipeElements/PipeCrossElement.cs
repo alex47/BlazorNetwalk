@@ -1,6 +1,6 @@
-﻿using BlazorNetwalk.Elements.BaseElements;
+﻿using NetwalkLogic.Elements.BaseElements;
 
-namespace BlazorNetwalk.Elements.PipeElements;
+namespace NetwalkLogic.Elements.PipeElements;
 
 public class PipeCrossElement : BaseCrossElement
 {

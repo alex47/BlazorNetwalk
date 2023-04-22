@@ -1,6 +1,6 @@
-﻿using BlazorNetwalk.Elements.BaseElements;
+﻿using NetwalkLogic.Elements.BaseElements;
 
-namespace BlazorNetwalk.Elements.ServerElements;
+namespace NetwalkLogic.Elements.ServerElements;
 
 public class ServerCrossElement : BaseCrossElement
 {
