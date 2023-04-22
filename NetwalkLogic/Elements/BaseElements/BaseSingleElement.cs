@@ -101,65 +101,13 @@ public class BaseSingleElement : AbstractElement
     }
 
 
-    public override bool CanNotConnectToLeft()
-    {
-        if (base.CanNotConnectToLeft())
-        {
-            return true;
-        }
+    public override bool CanNotConnectToLeft() => base.CanNotConnectToLeft() || LeftElement is BaseSingleElement;
 
-        if (LeftElement is ComputerSingleElement)
-        {
-            return true;
-        }
+    public override bool CanNotConnectToRight() => base.CanNotConnectToRight() || RightElement is BaseSingleElement;
 
-        return false;
-    }
+    public override bool CanNotConnectToTop() => base.CanNotConnectToTop() || TopElement is BaseSingleElement;
 
-    public override bool CanNotConnectToRight()
-    {
-        if (base.CanNotConnectToRight())
-        {
-            return true;
-        }
-
-        if (RightElement is ComputerSingleElement)
-        {
-            return true;
-        }
-
-        return false;
-    }
-
-    public override bool CanNotConnectToTop()
-    {
-        if (base.CanNotConnectToTop())
-        {
-            return true;
-        }
-
-        if (TopElement is ComputerSingleElement)
-        {
-            return true;
-        }
-
-        return false;
-    }
-
-    public override bool CanNotConnectToBottom()
-    {
-        if (base.CanNotConnectToBottom())
-        {
-            return true;
-        }
-
-        if (BottomElement is ComputerSingleElement)
-        {
-            return true;
-        }
-
-        return false;
-    }
+    public override bool CanNotConnectToBottom() => base.CanNotConnectToBottom() || BottomElement is BaseSingleElement;
 
 
     public override bool HasConnectionToLeft() => Position == 2;

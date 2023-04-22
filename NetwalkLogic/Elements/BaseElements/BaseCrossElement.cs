@@ -102,17 +102,14 @@ public class BaseCrossElement : AbstractElement
     }
 
 
-    public override List<Direction> GetConnectionDirections()
+    public override List<Direction> GetConnectionDirections() => Position switch
     {
-        return Position switch
-        {
-            0 => new List<Direction>() { Direction.Top, Direction.Bottom, Direction.Right },
-            1 => new List<Direction>() { Direction.Left, Direction.Right, Direction.Top },
-            2 => new List<Direction>() { Direction.Top, Direction.Bottom, Direction.Left },
-            3 => new List<Direction>() { Direction.Left, Direction.Right, Direction.Bottom },
-            _ => throw new ArgumentOutOfRangeException("Position must be between 0 and 3"),
-        };
-    }
+        0 => new List<Direction>() { Direction.Top, Direction.Bottom, Direction.Right },
+        1 => new List<Direction>() { Direction.Left, Direction.Right, Direction.Top },
+        2 => new List<Direction>() { Direction.Top, Direction.Bottom, Direction.Left },
+        3 => new List<Direction>() { Direction.Left, Direction.Right, Direction.Bottom },
+        _ => throw new ArgumentOutOfRangeException("Position must be between 0 and 3"),
+    };
 
 
     public override bool HasConnectionToLeft() => Position != 0;

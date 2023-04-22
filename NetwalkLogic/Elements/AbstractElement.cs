@@ -16,7 +16,7 @@ public abstract class AbstractElement
     public int Position { get; set; } = 0;
     public List<Direction> ConnectedDirections { get; } = new();
 
-    public bool IsFixed { get; private set; } = false;
+    public bool IsFixed { get; set; } = false;
     public bool IsConnectedToServer { get; set; } = false;
 
     public int X { get; set; } = 0;

@@ -95,17 +95,14 @@ public class BaseLineElement : AbstractElement
     }
 
 
-    public override List<Direction> GetConnectionDirections()
+    public override List<Direction> GetConnectionDirections() => Position switch
     {
-        return Position switch
-        {
-            0 => new List<Direction>() { Direction.Left, Direction.Right },
-            1 => new List<Direction>() { Direction.Top, Direction.Bottom },
-            2 => new List<Direction>() { Direction.Left, Direction.Right },
-            3 => new List<Direction>() { Direction.Top, Direction.Bottom },
-            _ => throw new ArgumentOutOfRangeException("Position must be between 0 and 3"),
-        };
-    }
+        0 => new List<Direction>() { Direction.Left, Direction.Right },
+        1 => new List<Direction>() { Direction.Top, Direction.Bottom },
+        2 => new List<Direction>() { Direction.Left, Direction.Right },
+        3 => new List<Direction>() { Direction.Top, Direction.Bottom },
+        _ => throw new ArgumentOutOfRangeException("Position must be between 0 and 3"),
+    };
 
 
     public override bool HasConnectionToLeft() => Position == 0 || Position == 2;
