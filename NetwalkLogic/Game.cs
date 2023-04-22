@@ -43,25 +43,18 @@ public class Game
         }
 
         bool didFixAnyElement;
-
         do
         {
             didFixAnyElement = false;
 
-            for (int i = 0; i < RowCount; i++)
+            foreach (var element in Elements)
             {
-                for (int j = 0; j < ColumnCount; j++)
+                if (element.TryFixing())
                 {
-                    bool didFixElement = Elements[i, j].TryFixing();
-
-                    if (didFixElement)
-                    {
-                        didFixAnyElement = true;
-                    }
+                    didFixAnyElement = true;
                 }
             }
         } while (didFixAnyElement);
-
     }
 
     public void UpdateServerConnectionStates()
@@ -77,19 +70,9 @@ public class Game
             return false;
         }
 
-        for (int i = 0; i < RowCount; i++)
-        {
-            for (int j = 0; j < ColumnCount; j++)
-            {
-                // Game is won when every computer is connected to the server
-                if (Elements[i, j] is Elements.ComputerElements.ComputerSingleElement && Elements[i, j].IsConnectedToServer == false)
-                {
-                    return false;
-                }
-            }
-        }
-
-        return true;
+        return Elements
+            .OfType<Elements.ComputerElements.ComputerSingleElement>()
+            .All(computer => computer.IsConnectedToServer);
     }
 
     private void SetServerConnectionStatesToFalse()
@@ -99,12 +82,9 @@ public class Game
             return;
         }
 
-        for (int i = 0; i < RowCount; i++)
+        foreach (var element in Elements)
         {
-            for (int j = 0; j < ColumnCount; j++)
-            {
-                Elements[i, j].IsConnectedToServer = false;
-            }
+            element.IsConnectedToServer = false;
         }
     }
 
@@ -115,18 +95,14 @@ public class Game
             throw new NullReferenceException("Elements is null!");
         }
 
-        for (int i = 0; i < RowCount; i++)
-        {
-            for (int j = 0; j < ColumnCount; j++)
-            {
-                if (Elements[i, j] is ServerCornerElement or ServerCrossElement or ServerLineElement or ServerSingleElement)
-                {
-                    return Elements[i, j];
-                }
-            }
-        }
-
-        throw new Exception("Server element was not found!");
+        // There will always be a server element, no need to check if we can't find one
+        return Elements
+            .OfType<AbstractElement>()
+            .First(element => element 
+                is ServerCornerElement
+                or ServerCrossElement
+                or ServerLineElement
+                or ServerSingleElement);
     }
 
     private void SetConnectedNeighboursToConnectedToServer(AbstractElement? thisElement)
