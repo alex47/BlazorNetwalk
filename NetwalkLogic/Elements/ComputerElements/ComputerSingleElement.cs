@@ -18,5 +18,6 @@ public class ComputerSingleElement : BaseSingleElement
     {
         IconNormal = "Assets/Elements/ComputerElements/ComputerSingleElement.png";
         IconConnectedToServer = "Assets/Elements/ComputerElements/ComputerSingleElement_ConnectedToServer.png";
+        IconLoop = IconNormal; // Never used under normal conditions
     }
 }

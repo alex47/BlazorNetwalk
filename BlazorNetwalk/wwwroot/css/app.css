@@ -104,20 +104,3 @@ a, .btn-link {
     pointer-events: none;
     opacity: 0.7;
 }
-
-.loop-element {
-    position: relative;
-    overflow: hidden;
-}
-
-.loop-element::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 0, 0, 0.3);
-    border: 2px solid red;
-    pointer-events: none;
-}

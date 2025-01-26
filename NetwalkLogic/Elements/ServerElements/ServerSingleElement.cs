@@ -8,6 +8,7 @@ public class ServerSingleElement : BaseSingleElement
     {
         IconNormal = "Assets/Elements/ServerElements/ServerSingleElement.png";
         IconConnectedToServer = IconNormal;
+        IconLoop = IconNormal;
 
         IsConnectedToServer = true;
     }

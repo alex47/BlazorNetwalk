@@ -4,32 +4,37 @@ namespace NetwalkLogic;
 
 public class LoopDetector
 {
-    public static void DetectLoops(Game? game)
+    public static void DetectLoops(AbstractElement[,]? elements)
     {
-        if (game is null || game.Elements is null)
+        if (elements is null)
         {
             return;
         }
 
-        game.LoopElements.Clear();
-        
+        foreach (var element in elements)
+        {
+            element.IsInLoop = false;
+        }
+
+        var loopElements = new HashSet<AbstractElement>();
         var visited = new HashSet<AbstractElement>();
 
-        foreach (var element in game.Elements)
+        foreach (var element in elements)
         {
             if (visited.Contains(element) == false)
             {
                 var path = new List<AbstractElement>();
-                DetectLoopDFS(element, null, path, visited, game.LoopElements);
+                DetectLoopDFS(element, null, path, visited, loopElements);
             }
         }
 
-        var distinctLoopElements = game.LoopElements.Distinct();
-        game.LoopElements.Clear();
-        game.LoopElements.AddRange(distinctLoopElements);
+        foreach (var element in loopElements)
+        {
+            element.IsInLoop = true;
+        }
     }
 
-    private static bool DetectLoopDFS(AbstractElement element, AbstractElement? parent, List<AbstractElement> path, HashSet<AbstractElement> visited, List<AbstractElement> loopElements)
+    private static bool DetectLoopDFS(AbstractElement element, AbstractElement? parent, List<AbstractElement> path, HashSet<AbstractElement> visited, HashSet<AbstractElement> loopElements)
     {
         if (visited.Contains(element))
         {
@@ -38,7 +43,11 @@ public class LoopDetector
             if (cycleStartIndex != -1)
             {
                 var cycle = path.GetRange(cycleStartIndex, path.Count - cycleStartIndex);
-                loopElements.AddRange(cycle);
+
+                foreach (var cycleElement in cycle)
+                {
+                    loopElements.Add(cycleElement);
+                }
 
                 return true;
             }

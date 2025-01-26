@@ -8,6 +8,7 @@ public class ServerCornerElement : BaseCornerElement
     {
         IconNormal = "Assets/Elements/ServerElements/ServerCornerElement.png";
         IconConnectedToServer = IconNormal;
+        IconLoop = IconNormal;
 
         IsConnectedToServer = true;
     }

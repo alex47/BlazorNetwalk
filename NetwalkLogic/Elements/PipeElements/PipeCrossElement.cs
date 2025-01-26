@@ -18,5 +18,6 @@ public class PipeCrossElement : BaseCrossElement
     {
         IconNormal = "Assets/Elements/PipeElements/PipeCrossElement.png";
         IconConnectedToServer = "Assets/Elements/PipeElements/PipeCrossElement_ConnectedToServer.png";
+        IconLoop = "Assets/Elements/PipeElements/PipeCrossElement_Loop.png";
     }
 }

@@ -62,7 +62,10 @@
     private void SolveButtonClicked()
     {
         game?.TrySolveGame();
+
         game?.UpdateServerConnectionStates();
+        game?.UpdateLoopStates();
+
         isGameSolved = game?.IsGameSolved() ?? false;
     }
 
@@ -92,22 +95,7 @@
     private void ElementRotatedCallback()
     {
         game?.UpdateServerConnectionStates();
-
-        // Reset loop states before detection
-        foreach (var element in game?.Elements ?? new AbstractElement[0,0])
-        {
-            element.IsInLoop = false;
-        }
-
-        LoopDetector.DetectLoops(game);
-
-        if (game?.LoopElements != null)
-        {
-            foreach (var element in game.LoopElements)
-            {
-                element.IsInLoop = true;
-            }
-        }
+        game?.UpdateLoopStates();
 
         isGameSolved = game?.IsGameSolved() ?? false;
         StateHasChanged();

@@ -4,17 +4,17 @@
 @if (Element is not null)
 {
     <div @onpointerdown="PointerDown"
-        @onpointerup="PointerUp"
-        @ondrag="Drag"
-        @oncontextmenu:preventDefault="true"
-        @oncontextmenu="DoNothing"
-        @ontouchmove:preventDefault="true"
-        @ontouchcancel:preventDefault="true"
-        @ontouchmove:stopPropagation="true"
-        @ontouchcancel:stopPropagation="true"
-        class="border d-flex align-items-center @(Element.IsFixed ? "bg-secondary" : "") @(Element.IsInLoop ? "loop-element" : "")"
-        style="width:@(Size + (Margin / 2))px; height:@(Size + (Margin / 2))px; transform: rotate(@(Element.Position * 90 * -1)deg);">
-            <img class="mx-auto" src="@(Element.IsConnectedToServer ? Element.IconConnectedToServer : Element.IconNormal)" width="@Size" height="@Size" />
+    @onpointerup="PointerUp"
+    @ondrag="Drag"
+    @oncontextmenu:preventDefault="true"
+    @oncontextmenu="DoNothing"
+    @ontouchmove:preventDefault="true"
+    @ontouchcancel:preventDefault="true"
+    @ontouchmove:stopPropagation="true"
+    @ontouchcancel:stopPropagation="true"
+    class="border d-flex align-items-center @(Element.IsFixed ? "bg-secondary" : "")"
+    style="width:@(Size + (Margin / 2))px; height:@(Size + (Margin / 2))px; transform: rotate(@(Element.Position * 90 * -1)deg);">
+        <img class="mx-auto" src="@ElementIcon" width="@Size" height="@Size" />
     </div>
 }
 
@@ -44,6 +44,14 @@
     { 
 
     }
+
+    private string ElementIcon => Element switch
+    {
+        null => string.Empty,
+        _ when Element.IsInLoop => Element.IconLoop,
+        _ when Element.IsConnectedToServer => Element.IconConnectedToServer,
+        _ => Element.IconNormal
+    };
 
     private void PointerDown()
     {

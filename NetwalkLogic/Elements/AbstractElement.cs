@@ -12,6 +12,7 @@ public abstract class AbstractElement
 
     public string IconNormal { get; protected set; } = string.Empty;
     public string IconConnectedToServer { get; protected set; } = string.Empty;
+    public string IconLoop { get; protected set; } = string.Empty;
 
     public int Position { get; set; } = 0;
     public List<Direction> ConnectedDirections { get; } = new();

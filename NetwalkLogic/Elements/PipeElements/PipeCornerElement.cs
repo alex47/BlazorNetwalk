@@ -18,5 +18,6 @@ public class PipeCornerElement : BaseCornerElement
     {
         IconNormal = "Assets/Elements/PipeElements/PipeCornerElement.png";
         IconConnectedToServer = "Assets/Elements/PipeElements/PipeCornerElement_ConnectedToServer.png";
+        IconLoop = "Assets/Elements/PipeElements/PipeCornerElement_Loop.png";
     }
 }

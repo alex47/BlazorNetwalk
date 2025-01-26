@@ -8,6 +8,7 @@ public class ServerLineElement : BaseLineElement
     {
         IconNormal = "Assets/Elements/ServerElements/ServerLineElement.png";
         IconConnectedToServer = IconNormal;
+        IconLoop = IconNormal;
 
         IsConnectedToServer = true;
     }

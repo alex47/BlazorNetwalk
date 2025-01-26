@@ -7,8 +7,6 @@ public class Game
 {
     public AbstractElement[,]? Elements { get; private set; }
 
-    public List<AbstractElement> LoopElements { get; private set; } = [];
-
     public int RowCount { get; private set; }
 
     public int ColumnCount { get; private set; }
@@ -30,6 +28,7 @@ public class Game
         serverElement = GetServerElement();
 
         UpdateServerConnectionStates();
+        UpdateLoopStates();
     }
 
     public void RestartGame()
@@ -63,6 +62,11 @@ public class Game
     {
         SetServerConnectionStatesToFalse();
         SetConnectedNeighboursToConnectedToServer(serverElement);
+    }
+
+    public void UpdateLoopStates()
+    {
+        LoopDetector.DetectLoops(Elements);
     }
 
     public bool IsGameSolved()

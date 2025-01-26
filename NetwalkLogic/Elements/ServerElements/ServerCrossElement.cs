@@ -8,6 +8,7 @@ public class ServerCrossElement : BaseCrossElement
     {
         IconNormal = "Assets/Elements/ServerElements/ServerCrossElement.png";
         IconConnectedToServer = IconNormal;
+        IconLoop = IconNormal;
 
         IsConnectedToServer = true;
     }

@@ -18,5 +18,6 @@ public class PipeLineElement : BaseLineElement
     {
         IconNormal = "Assets/Elements/PipeElements/PipeLineElement.png";
         IconConnectedToServer = "Assets/Elements/PipeElements/PipeLineElement_ConnectedToServer.png";
+        IconLoop = "Assets/Elements/PipeElements/PipeLineElement_Loop.png";
     }
 }
