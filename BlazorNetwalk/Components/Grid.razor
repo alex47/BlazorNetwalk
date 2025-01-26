@@ -5,25 +5,33 @@
 
 @if (game is not null && game.Elements is not null)
 {
-    @if (isGameSolved)
-    {
-        <h3>YOU WON!</h3>
-    }
-
-    @for (int i = 0; i < game.RowCount; i++)
-    {
-        <div
-            @ontouchmove:preventDefault="true"
-            @ontouchcancel:preventDefault="true"
-            @ontouchmove:stopPropagation="true"
-            @ontouchcancel:stopPropagation="true"
-            class="d-flex flex-row">
-            @for (int j = 0; j < game.ColumnCount; j++)
+    <div class="@(isGameSolved ? "grid-disabled" : "")">
+        <div class="grid-container">
+            @for (int i = 0; i < game.RowCount; i++)
             {
-                <div class="">
-                    <GridElement Size="@ElementSize" Margin="@ElementMargin" Element="game.Elements[i, j]" OnClickCallback="ElementRotatedCallback" />
+                <div @ontouchmove:preventDefault="true"
+                @ontouchcancel:preventDefault="true"
+                @ontouchmove:stopPropagation="true"
+                @ontouchcancel:stopPropagation="true"
+                class="d-flex flex-row">
+                    @for (int j = 0; j < game.ColumnCount; j++)
+                    {
+                        <div class="">
+                            <GridElement Size="@ElementSize"
+                            Margin="@ElementMargin"
+                            Element="game.Elements[i, j]"
+                            OnClickCallback="ElementRotatedCallback" />
+                        </div>
+                    }
                 </div>
             }
+        </div>
+    </div>
+
+    @if (isGameSolved)
+    {
+        <div class="win-overlay">
+            <div class="win-text">You win!</div>
         </div>
     }
 
