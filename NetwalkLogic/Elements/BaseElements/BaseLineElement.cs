@@ -112,4 +112,13 @@ public class BaseLineElement : AbstractElement
     public override bool HasConnectionToTop() => Position == 1 || Position == 3;
 
     public override bool HasConnectionToBottom() => HasConnectionToTop();
+
+
+    public override bool ElementCanNotConnectToLeft() => false;
+
+    public override bool ElementCanNotConnectToRight() => false;
+
+    public override bool ElementCanNotConnectToTop() => false;
+
+    public override bool ElementCanNotConnectToBottom() => false;
 }

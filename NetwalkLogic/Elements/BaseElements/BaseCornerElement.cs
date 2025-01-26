@@ -310,4 +310,13 @@ public class BaseCornerElement : AbstractElement
 
         return false;
     }
+
+
+    public override bool ElementCanNotConnectToLeft() => MustConnectToRight();
+
+    public override bool ElementCanNotConnectToRight() => MustConnectToLeft();
+
+    public override bool ElementCanNotConnectToTop() => MustConnectToBottom();
+
+    public override bool ElementCanNotConnectToBottom() => MustConnectToTop();
 }

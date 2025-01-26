@@ -117,4 +117,13 @@ public class BaseSingleElement : AbstractElement
     public override bool HasConnectionToTop() => Position == 1;
 
     public override bool HasConnectionToBottom() => Position == 3;
+
+
+    public override bool ElementCanNotConnectToLeft() => false;
+
+    public override bool ElementCanNotConnectToRight() => false;
+
+    public override bool ElementCanNotConnectToTop() => false;
+
+    public override bool ElementCanNotConnectToBottom() => false;
 }
