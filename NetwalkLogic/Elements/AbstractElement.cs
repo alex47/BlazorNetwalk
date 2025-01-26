@@ -18,6 +18,7 @@ public abstract class AbstractElement
 
     public bool IsFixed { get; set; } = false;
     public bool IsConnectedToServer { get; set; } = false;
+    public bool IsInLoop { get; set; } = false;
 
     public int X { get; set; } = 0;
     public int Y { get; set; } = 0;
@@ -47,6 +48,12 @@ public abstract class AbstractElement
 
     public abstract bool TryFixing();
     public abstract List<Direction> GetConnectionDirections();
+
+    public bool IsConnectedWith(AbstractElement other) => 
+        ReferenceEquals(this, other.LeftElement) && IsConnectedWithRightElement() ||
+        ReferenceEquals(this, other.RightElement) && IsConnectedWithLeftElement() ||
+        ReferenceEquals(this, other.TopElement) && IsConnectedWithBottomElement() ||
+        ReferenceEquals(this, other.BottomElement) && IsConnectedWithTopElement();
 
     public abstract bool HasConnectionToLeft();
     public abstract bool HasConnectionToRight();

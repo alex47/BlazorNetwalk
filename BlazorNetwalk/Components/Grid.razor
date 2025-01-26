@@ -72,7 +72,7 @@
 
         rowCount = (int)Math.Floor((float)(windowDimensions.Height - 60) / (ElementSize + ElementMargin / 2));
         columnCount = (int)Math.Floor((float)windowDimensions.Width / (ElementSize + ElementMargin / 2));
-        
+
         isGameSolved = false;
         game?.NewGame(rowCount, columnCount, isWrapping);
     }
@@ -92,7 +92,25 @@
     private void ElementRotatedCallback()
     {
         game?.UpdateServerConnectionStates();
+
+        // Reset loop states before detection
+        foreach (var element in game?.Elements ?? new AbstractElement[0,0])
+        {
+            element.IsInLoop = false;
+        }
+
+        LoopDetector.DetectLoops(game);
+
+        if (game?.LoopElements != null)
+        {
+            foreach (var element in game.LoopElements)
+            {
+                element.IsInLoop = true;
+            }
+        }
+
         isGameSolved = game?.IsGameSolved() ?? false;
+        StateHasChanged();
     }
 
     public class WindowDimension

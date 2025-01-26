@@ -7,6 +7,8 @@ public class Game
 {
     public AbstractElement[,]? Elements { get; private set; }
 
+    public List<AbstractElement> LoopElements { get; private set; } = [];
+
     public int RowCount { get; private set; }
 
     public int ColumnCount { get; private set; }
@@ -74,6 +76,8 @@ public class Game
             .OfType<Elements.ComputerElements.ComputerSingleElement>()
             .All(computer => computer.IsConnectedToServer);
     }
+
+
 
     private void SetServerConnectionStatesToFalse()
     {
